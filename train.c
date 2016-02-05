@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     vbg = vbg_alloc(numK,dado->dimension);
 
     gm = gmm_initialize(dado,vbg->K);
-    for(i=0; i < 50; i++)
+    for(i=0; i < 5; i++)
     {
         llh = gmm_EMtrain(dado,gm,pool); /* Compute one iteration of EM algorithm.   */
         fprintf(stdout,"Iteration: %05i    Improvement: %3i%c    LogLikelihood: %.3f\n",
