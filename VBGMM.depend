@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1454659052 source:/home/douglas/Área de Trabalho/VBGMM/vem.c
+1454705890 source:/home/douglas/Área de Trabalho/VBGMM/vem.c
 	"vem.h"
 
 1454659315 /home/douglas/Área de Trabalho/VBGMM/vem.h
@@ -35,6 +35,6 @@
 
 1450933228 /home/douglas/Área de Trabalho/VBGMM/include/gmm.h
 
-1454659450 source:/home/douglas/Área de Trabalho/VBGMM/train.c
+1454706821 source:/home/douglas/Área de Trabalho/VBGMM/train.c
 	"vem.h"
 
