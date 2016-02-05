@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1454659052 source:/home/douglas/Área de Trabalho/VBGMM/vem.c
+	"vem.h"
+
+1454659315 /home/douglas/Área de Trabalho/VBGMM/vem.h
+	<gsl/gsl_matrix.h>
+	<gsl/gsl_blas.h>
+	<gsl/gsl_linalg.h>
+	<gsl/gsl_sf.h>
+	<math.h>
+	<pthread.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<global.h>
+	<workers.h>
+	<data.h>
+	<gmm.h>
+
+1450466929 /home/douglas/Área de Trabalho/VBGMM/include/global.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<float.h>
+	<limits.h>
+	<unistd.h>
+	<getopt.h>
+	<pthread.h>
+	<zlib.h>
+
+1450450025 /home/douglas/Área de Trabalho/VBGMM/include/workers.h
+
+1450450025 /home/douglas/Área de Trabalho/VBGMM/include/data.h
+
+1450933228 /home/douglas/Área de Trabalho/VBGMM/include/gmm.h
+
+1454659450 source:/home/douglas/Área de Trabalho/VBGMM/train.c
+	"vem.h"
+
