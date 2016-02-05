@@ -92,6 +92,7 @@ void vbg_save(char *fname,VBGMM *m)
     fclose(f);
 }
 
+///Subtract matrix m by a scalar s
 void msubs (gsl_matrix *m, double s)
 {
     gsl_matrix *n = NULL;
@@ -101,6 +102,7 @@ void msubs (gsl_matrix *m, double s)
     gsl_matrix_free(n);
 }
 
+///The trace of a matrix
 double mtrace (gsl_matrix *m)
 {
     int i;
@@ -115,9 +117,11 @@ double mtrace (gsl_matrix *m)
     return r;
 }
 
+///The determinant of a matrix
 double determinante (gsl_matrix *mtx)
 {
     int s;
+    double d;
     gsl_matrix *m;
     gsl_permutation *p;
     if (mtx->size1 != mtx->size2)
@@ -129,13 +133,15 @@ double determinante (gsl_matrix *mtx)
     m = gsl_matrix_alloc(mtx->size1,mtx->size2);
     gsl_matrix_memcpy(m,mtx);
     gsl_linalg_LU_decomp(m,p,&s);
+    d = gsl_linalg_LU_det(m,s);
 
     gsl_permutation_free(p);
     gsl_matrix_free(m);
 
-    return gsl_linalg_LU_det(m,s);
+    return d;
 }
 
+///The inverse matrix
 gsl_matrix* inver (gsl_matrix *m)
 {
     gsl_matrix *r = gsl_matrix_alloc(m->size1,m->size2);
@@ -146,6 +152,7 @@ gsl_matrix* inver (gsl_matrix *m)
     return r;
 }
 
+///Given two vectors a and b returns the matrix: r = (aa x a)' * (bb x b);
 gsl_matrix* matrix_from_vec_x_vec (gsl_vector *a, gsl_vector *b, double aa, double bb, gsl_matrix* r)
 {
     gsl_matrix *ma,*mb;
@@ -205,6 +212,7 @@ typedef struct rARG_T
     int *f;
 }rARG_T;
 
+///For the computation of r
 void* rcomp (rARG_T *arg)
 {
     int i,j,K = arg->K_,s1 = arg->s1_,s2 = arg->s2_;
@@ -225,6 +233,7 @@ void* rcomp (rARG_T *arg)
     return NULL;
 }
 
+///For the computation of E
 void* Ecomp (EARG_T *arg)
 {
     int c;
@@ -275,6 +284,16 @@ void* Ecomp (EARG_T *arg)
     return NULL;
 }
 
+/*! The VEM.
+    @param vbg The structure for the VBGMM hiperparamenters.
+    @param gm The initial GMM trained with EM
+    @param dado The data for training
+    @param alpha0 The initial value for the alpha hiperparam.
+    @param beta0 The initial value for the beta hiperparam.
+    @param v0 The initial value for the v hiperparam.
+    @param m0 The initial value for the m hiperparam.
+    @param W0 The initial value for the W hiperparam.
+*/
 void vbg_vem(VBGMM *vbg, gmm *gm, data *dado, double alpha0, double beta0, double v0, gsl_vector *m0, gsl_matrix *W0)
 {
     int i,j,k,t,cqueda = 0;
@@ -323,7 +342,6 @@ void vbg_vem(VBGMM *vbg, gmm *gm, data *dado, double alpha0, double beta0, doubl
             gsl_matrix_set(xbar,j,i,gm->mix[i].mean[j]);
         }
     }
-
 
     ///Initializing bayesian hiperparamters alpha, beta and v
     alpha = gsl_vector_alloc(K);
@@ -395,6 +413,7 @@ void vbg_vem(VBGMM *vbg, gmm *gm, data *dado, double alpha0, double beta0, doubl
         gsl_permutation_free(perm);
     }
 
+    ///The main loop
     for (t=0; t<VBGMMMAXITER; t++)
     {
         double psiAlphaHat, sumAlpha;
