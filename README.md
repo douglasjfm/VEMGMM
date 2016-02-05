@@ -8,4 +8,4 @@ This project is based on GSL, the Gnu Scientific Library, its necessary link it 
 CBLAS is also used with GSL and you must also link it.
 Libz, the library for file compression, is also a dependency, and you will need to link the static lib.
 
-The EM algorith, the functions for IO was implmented on the GitHub project em4gmm of the user juandavm.
+The EM algorith, the functions for IO were implemented on the GitHub project em4gmm of the user juandavm.
